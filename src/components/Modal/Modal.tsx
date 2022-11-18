@@ -39,8 +39,6 @@ const Modal = (props: Props) => {
     const [modalState, setModalState] = useState(ModalState.PhoneInput);
     const [error, setError] = useState(false);
 
-    const showClass = isOpen ? ' modal show' : 'modal';
-
     function changeInput(e: React.ChangeEvent<HTMLInputElement>) {
         e.target.style.opacity = '1';
 
@@ -73,6 +71,7 @@ const Modal = (props: Props) => {
     }
 
     if (
+        modalState === ModalState.CodeInput &&
         inputValues['inputValue1'] === '5' &&
         inputValues['inputValue2'] === '5' &&
         inputValues['inputValue3'] === '5' &&
@@ -81,7 +80,7 @@ const Modal = (props: Props) => {
         onCloseModal();
     }
     return (
-        <div className={`${showClass}`}>
+        <div className={isOpen ? ' modal show' : 'modal'}>
             <div className='modal__dialog'>
                 <div className='modal__content'>
                     <form className='modal__form'>

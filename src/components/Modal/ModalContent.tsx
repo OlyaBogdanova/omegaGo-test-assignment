@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import ModalInput from './ModalInput';
+import React from 'react';
 import './Modal.scss';
-import Timer from './Timer';
-import ModalInput2 from './ModalInput2';
+import PhoneInput from './PhoneInput';
+import CodeInput from './CodeInput';
+import Error from './Error';
 
 type Props = {
     modalState: number;
@@ -11,13 +11,12 @@ type Props = {
     isElemActive: boolean;
     onClickBtn(e: React.MouseEvent): void;
     changeModalState: (num: number) => void;
-    changeInputValues(key:string, value:string): void;
-    inputValues:Record<string, string>;
-    changeError(value:boolean):void;
-    error:boolean;
-    clearInputValues():void
- 
-}
+    changeInputValues(key: string, value: string): void;
+    inputValues: Record<string, string>;
+    changeError(value: boolean): void;
+    error: boolean;
+    clearInputValues(): void;
+};
 
 const ModalContent = (props: Props) => {
     const {
@@ -31,119 +30,48 @@ const ModalContent = (props: Props) => {
         inputValues,
         changeError,
         error,
-        clearInputValues
-   
-      
+        clearInputValues,
     } = props;
 
     switch (modalState) {
         case 1:
             return (
-                <>
-                    <div className='modal__subtitle'>
-                        Подарим подарок на день рождения, сохраним статистику
-                        игр и сообщим об акциях
-                    </div>
-                    <div className='modal__phone'>Номер телефона</div>
-                    <div className='modal__input'>
-                        <ModalInput
-                            value={value}
-                            changeInput={changeInput}
-                            isElemActive={isElemActive}
-                        />
-                    </div>
-                    <div className='modal__accept'>
-                        Продолжая, вы соглашаетесь{' '}
-                        <a href='https://drive.google.com/file/d/1iy5GlqjjOBBq2LrQXJ1tJ1jfBSGCdueb/view?usp=sharing' target="_blank" rel="noreferrer">
-                            со сбором и обработкой персональных данных
-                        </a> и <a href='https://drive.google.com/file/d/1-2xH00PNuYEfrB1O6g0DpDpNlymrGi6r/view?usp=sharing' target="_blank" rel="noreferrer">
-                            пользовательским соглашением
-                        </a>
-                    </div>
-                    <button
-                        className={
-                            isElemActive ? 'modal__btn_active' : 'modal__btn'
-                        }
-                        type='submit'
-                        onClick={(e) => {
-                            onClickBtn(e);
-                        }}>
-                        Выслать код
-                    </button>
-                </>
+                <PhoneInput
+                    value={value}
+                    changeInput={changeInput}
+                    isElemActive={isElemActive}
+                    onSubmit={onClickBtn}
+                />
             );
-            break;
         case 2:
             return (
-                <>
-                    <div className='modal__subtitle_2'>
-                        Код отправлен сообщением на номер <span>{value}</span>
-                    </div>
-                    <div className='modal__phone' onClick={(e)=>changeModalState(1)}>
-                        <a className='modal__phone_link'>
-                            Изменить номер телефона
-                        </a>
-                    </div>
-                    <div className='modal__input_2'>
-                        <ModalInput2  changeInputValues={changeInputValues}  inputValues={inputValues} changeError={changeError} />
-                    </div>
-                    <div className='modal__accept'>
-                        Продолжая, вы соглашаетесь{' '}
-                        <a href='https://drive.google.com/file/d/1iy5GlqjjOBBq2LrQXJ1tJ1jfBSGCdueb/view?usp=sharing' target="_blank" rel="noreferrer">
-                            со сбором и обработкой персональных данных</a> и <a href='https://drive.google.com/file/d/1-2xH00PNuYEfrB1O6g0DpDpNlymrGi6r/view?usp=sharing' target="_blank" rel="noreferrer" >
-                            пользовательским соглашением
-                        </a>
-                    </div>
-                    <button
-                        className='modal__btn'
-                        type='submit'
-                        onClick={(e) => {
-                            onClickBtn(e);
-                        }}>
-                        Выслать код повторно через{' '}
-                        <Timer     changeInputValues={changeInputValues} clearInputValues={clearInputValues} error={error}
-                            sec={20}
-                            changeModalState={changeModalState}
-                        />{' '}
-                        сек
-                    </button>
-                </>
+                <CodeInput
+                    phone={value}
+                    clearInputValues={clearInputValues}
+                    changeError={changeError}
+                    changeInputValues={changeInputValues}
+                    changeModalState={changeModalState}
+                    error={error}
+                    inputValues={inputValues}
+                    onClickBtn={onClickBtn}
+                />
             );
-            case 3:
+        case 3:
             return (
-                <>
-                    <div className='modal__subtitle_2'>
-                        Код отправлен сообщением на номер <span>{value}</span>
-                    </div>
-                    <div className='modal__phone' onClick={(e)=>changeModalState(1)}>
-                        <a className='modal__phone_link'>
-                            Изменить номер телефона
-                        </a>
-                    </div>
-                    <div className='modal__input_2'>
-                        <ModalInput2 changeInputValues={changeInputValues} changeError={changeError}  inputValues={inputValues}  />
-                    </div>
-                    <div className='modal__accept'>
-                        Продолжая, вы соглашаетесь{' '}
-                        <a href='https://drive.google.com/file/d/1iy5GlqjjOBBq2LrQXJ1tJ1jfBSGCdueb/view?usp=sharing' target="_blank" rel="noreferrer">
-                            со сбором и обработкой персональных данных</a> и <a href='https://drive.google.com/file/d/1-2xH00PNuYEfrB1O6g0DpDpNlymrGi6r/view?usp=sharing' target="_blank" rel="noreferrer" >
-                            пользовательским соглашением
-                        </a>
-                    </div>
-                    <button
-                        className={
-                            isElemActive ? 'modal__btn_active' : 'modal__btn'
-                        }
-                        type='submit'
-                        onClick={(e) => {
-                            onClickBtn(e);
-                        }}>
-                        Выслать код повторно
-                    </button>
-                </>
+                <Error
+                    phone={value}
+                    isElemActive={isElemActive}
+                    changeError={changeError}
+                    changeInputValues={changeInputValues}
+                    changeModalState={changeModalState}
+                    inputValues={inputValues}
+                    onClickBtn={onClickBtn}
+                />
             );
+
+        default:
+            return <></>;
     }
-    return <> </>;
 };
 
 export default ModalContent;
