@@ -5,6 +5,7 @@ export default class Services {
     static getUserLogin(
         phone: string
     ): Promise<AxiosResponse<Record<string, string>>> {
+        
         return axios.post<Record<string, string>>(
             'http://188.225.33.40/api/user/login',
             { phone: `${phone}` },

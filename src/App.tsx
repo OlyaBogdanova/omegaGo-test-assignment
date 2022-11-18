@@ -1,48 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Page1 from './components/Page1/Page1';
 import PersonalAccount from './components/PersonalAccount/PersonalAccountMain/PersonalAccount';
+import useMultiplyInputs from './hooks/useMultiplyInputs';
 
 function App() {
-    const [inputValues, setInputValues] = useState({
-        inputValue1: '',
-        inputValue2: '',
-        inputValue3: '',
-        inputValue4: '',
-    });
-    const [tokenCod, setToken] = useState('');
+    const { values, onChange, clear } = useMultiplyInputs();
 
-    function changeInputValues(key: string, value: string) {
-        setInputValues((prevState) => {
-            return { ...prevState, [key]: value };
-        });
-    }
+    const [token, setToken] = useState('');
 
     function changeToken(value: string) {
         setToken(value);
-    }
-    function clearInputValues(){
-        setInputValues({
-            inputValue1: '',
-            inputValue2: '',
-            inputValue3: '',
-            inputValue4: '',
-        })
+        localStorage.setItem('token', value);
     }
 
     const page =
-        inputValues['inputValue1'] === '5' &&
-        inputValues['inputValue2'] === '5' &&
-        inputValues['inputValue3'] === '5' &&
-        inputValues['inputValue4'] === '5' ? (
-            <PersonalAccount tokenCod={tokenCod} />
+        values['inputValue1'] === '5' &&
+        values['inputValue2'] === '5' &&
+        values['inputValue3'] === '5' &&
+        values['inputValue4'] === '5' ? (
+            <PersonalAccount tokenCod={token} />
         ) : (
             <Page1
-                inputValues={inputValues}
-                changeInputValues={changeInputValues}
+                inputValues={values}
+                changeInputValues={onChange}
                 changeToken={changeToken}
-                clearInputValues={clearInputValues}
+                clearInputValues={clear}
             />
         );
 
