@@ -6,9 +6,8 @@ import PersonalAccount from './components/PersonalAccount/PersonalAccountMain/Pe
 import useMultiplyInputs from './hooks/useMultiplyInputs';
 
 function App() {
-    const { values, onChange, clear } = useMultiplyInputs();
-
     const [token, setToken] = useState('');
+    const { values, onChange, clear } = useMultiplyInputs();
 
     function changeToken(value: string) {
         setToken(value);
@@ -16,6 +15,7 @@ function App() {
     }
 
     const page =
+        token &&
         values['inputValue1'] === '5' &&
         values['inputValue2'] === '5' &&
         values['inputValue3'] === '5' &&
