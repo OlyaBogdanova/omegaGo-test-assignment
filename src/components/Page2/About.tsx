@@ -1,9 +1,8 @@
 import React from 'react';
-import './Page2.scss'
 
-type Props = {}
+import './About.scss'
 
-const Page2 = (props: Props) => {
+const About = () => {
   return (
     <div className="page__two__about about">
                 <div className="about__container _container">
@@ -38,4 +37,4 @@ const Page2 = (props: Props) => {
   )
 }
 
-export default Page2
+export default About

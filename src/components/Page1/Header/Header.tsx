@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from '../../Modal/Modal';
 import './Header.scss';
@@ -6,12 +6,12 @@ const VK = require('../../../img/vk.svg');
 const man = require('../../../img/man.svg');
 
 type Props = {
-    onLogin():void
+    onClickLogin(): void;
 };
 
-const Header = (props:Props) => {
-    const {onLogin}=props;
- 
+const Header = (props: Props) => {
+    const { onClickLogin } = props;
+
     return (
         <header className='header'>
             <div className='header__container _container'>
@@ -85,13 +85,15 @@ const Header = (props:Props) => {
                             </a>
                         </li>
                     </ul>
-                    <div className='contacts__authorization'onClick={(e)=>onLogin()}>
+                    <div
+                        className='contacts__authorization'
+                        onClick={(e) => onClickLogin()}>
                         <img
                             src={man.default}
                             alt='man'
                         />
-                        <div className='authorization__link' >
-                            <Link to={'/'} >Войти</Link>
+                        <div className='authorization__link'>
+                            <Link to={'/'}>Войти</Link>
                         </div>
                     </div>
                 </div>

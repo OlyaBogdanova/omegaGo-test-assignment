@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-import Page1 from './components/Page1/Page1';
+import Main from './components/Page1/Main';
 import PersonalAccount from './components/PersonalAccount/PersonalAccountMain/PersonalAccount';
 import useMultiplyInputs from './hooks/useMultiplyInputs';
 
@@ -22,7 +22,7 @@ function App() {
         values['inputValue4'] === '5' ? (
             <PersonalAccount tokenCod={token} />
         ) : (
-            <Page1
+            <Main
                 inputValues={values}
                 changeInputValues={onChange}
                 changeToken={changeToken}

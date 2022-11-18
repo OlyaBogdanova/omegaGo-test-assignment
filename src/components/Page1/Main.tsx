@@ -1,54 +1,57 @@
 import React, { useState } from 'react';
+
 import Header from './Header/Header';
-import Modal from './../Modal/Modal';
-import Page2 from '../Page2/Page2';
 import Slider from './Slider/Slider';
+
+import Modal from '../Modal/Modal';
+import About from '../Page2/About';
 
 type Props = {
     inputValues: Record<string, string>;
     changeInputValues(key: string, value: string): void;
     changeToken(value: string): void;
     clearInputValues():void
-
-
 };
 
-const Page1 = (props: Props) => {
-    const [show, setShow] = useState(false);
-    const [phone, setPhone] = useState('');
+const Main = (props: Props) => {
     const { inputValues, changeInputValues, changeToken, clearInputValues } =
         props;
-    function onLogin() {
-        setShow(true);
-    }
-    function onCloseModal() {
-        setShow(false);
-        setPhone('');
-    }
-    function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [phone, setPhone] = useState('');
+
+    function onChangePhone(e: React.ChangeEvent<HTMLInputElement>) {
         setPhone(e.target.value);
     }
+
+    function onClickLogin() {
+        setIsShowModal(true);
+    }
+
+    function onCloseModal() {
+        setIsShowModal(false);
+        setPhone('');
+    }
+
     return (
         <>
-            <Header onLogin={onLogin} />
+            <Header onClickLogin={onClickLogin} />
             <Slider />
-            {show && (
+            {isShowModal && (
                 <Modal
                     inputValues={inputValues}
                     value={phone}
-                    onChange={onChange}
-                    show={show}
+                    onChange={onChangePhone}
+                    isOpen={isShowModal}
                     onCloseModal={onCloseModal}
                     changeInputValues={changeInputValues}
                     changeToken={changeToken}
                     clearInputValues={clearInputValues}
-               
-              
                 />
             )}
-            <Page2 />
+            <About />
         </>
     );
 };
 
-export default Page1;
+export default Main;

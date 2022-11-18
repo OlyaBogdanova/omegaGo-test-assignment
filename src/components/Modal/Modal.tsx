@@ -1,65 +1,77 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
 import './Modal.scss';
+
 import ModalContent from './ModalContent';
 
 import Services from '../../Services/Services';
 
 type Props = {
-    show: boolean;
+    isOpen: boolean;
     onCloseModal(): void;
     value: string;
     onChange(e: React.ChangeEvent<HTMLInputElement>): void;
     inputValues: Record<string, string>;
     changeInputValues(key: string, value: string): void;
     changeToken(value: string): void;
-    clearInputValues():void
+    clearInputValues(): void;
 };
+
+enum ModalState {
+    PhoneInput = 1,
+    CodeInput,
+    Error,
+}
 
 const Modal = (props: Props) => {
     const {
-        show,
+        isOpen,
         onCloseModal,
         value,
         onChange,
         inputValues,
         changeInputValues,
         changeToken,
-        clearInputValues
+        clearInputValues,
     } = props;
-    const [isElemActive, setElemActive] = useState(false);
-    const [modalState, setModalState] = useState(1);
+
+    const [isInputActive, setIsInputActive] = useState(false);
+    const [modalState, setModalState] = useState(ModalState.PhoneInput);
     const [error, setError] = useState(false);
 
-    const showClass = show ? ' modal show' : 'modal';
+    const showClass = isOpen ? ' modal show' : 'modal';
 
     function changeInput(e: React.ChangeEvent<HTMLInputElement>) {
         e.target.style.opacity = '1';
 
         if (e.target.value.trim().replace(/\D/g, '').length === 11) {
-            setElemActive(true);
+            setIsInputActive(true);
         } else {
-            setElemActive(false);
+            setIsInputActive(false);
         }
         onChange(e);
     }
-    function changeModalState(num: number) {
-        setModalState(num);
+
+    function changeModalState(state: ModalState) {
+        setModalState(state);
     }
+
     function changeError(value: boolean) {
         setError(value);
     }
+
     async function onClickBtn(e: React.MouseEvent) {
         e.preventDefault();
-        setModalState(2);
 
         changeToken(
             await Services.getUserLogin(
                 value.trim().replace(/\D/g, '').substring(1)
             ).then((data) => data.data['token'])
         );
+
+        setModalState(ModalState.CodeInput);
     }
 
-   
     if (
         inputValues['inputValue1'] === '5' &&
         inputValues['inputValue2'] === '5' &&
@@ -85,7 +97,7 @@ const Modal = (props: Props) => {
                             value={value}
                             modalState={modalState}
                             changeInput={changeInput}
-                            isElemActive={isElemActive}
+                            isElemActive={isInputActive}
                             onClickBtn={onClickBtn}
                             changeModalState={changeModalState}
                             changeInputValues={changeInputValues}
