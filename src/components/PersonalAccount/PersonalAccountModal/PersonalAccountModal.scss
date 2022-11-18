@@ -1,0 +1,104 @@
+@import '../../../variables.scss';
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.show {
+    display: block;
+}
+.modal__dialog {
+    max-width: 394px;
+    margin: 40px auto;
+}
+.modal__content {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    padding: 32px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.modal__close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 14px;
+    color: #000;
+    opacity: 0.5;
+    font-weight: 700;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.modal__subtitle {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: calc(18.75 / 18 * 100%);
+    color: #9d9e9e;
+    margin-bottom: 20px;
+}
+.modal_subtitle_2 {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 103%;
+    margin-bottom: 12px;
+}
+.modal__textarea {
+    width: 341px;
+    height: 96px;
+    border: 1px solid #9d9e9e;
+    border-radius: 5px;
+    padding: 13px 16px;
+    margin-bottom: 12px;
+}
+
+input::-webkit-input-placeholder {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #9d9e9e;
+}
+input:-moz-placeholder {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #9d9e9e;
+}
+.modal__btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal__btn__noRemove,
+.modal__btn__remove {
+    width: 156px;
+    height: 38px;
+  
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    border-radius: 5px;
+}
+.modal__btn__noRemove{
+background: $primary_color;
+color:#fff;
+padding: 12px 36px;
+}
+.modal__btn__remove {
+    color: #9D9E9E;
+    background:#fff;
+    border: 1px solid #9D9E9E;
+    padding: 12px 30px;
+}
