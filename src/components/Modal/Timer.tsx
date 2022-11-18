@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { ModalState } from './Modal';
 
-type Props = { sec: number; changeModalState: (num: number) => void ;
-    error:boolean; changeInputValues(key: string, value: string): void;
-    clearInputValues():void;
-  }
+type Props = {
+    sec: number;
+    changeModalState: (num: number) => void;
+    error: boolean;
+    clearInputValues(): void;
+};
 
 const Timer = (props: Props) => {
-    const { sec, changeModalState, error,changeInputValues, clearInputValues} = props;
+    const { sec, changeModalState, error, clearInputValues } = props;
     const [seconds, setSeconds] = useState(sec);
 
     useEffect(() => {
@@ -14,16 +17,15 @@ const Timer = (props: Props) => {
             setSeconds(seconds - 1);
         }, 1000);
 
-        if (seconds === 0 && error===false) {
+        if (seconds === 0 && error === false) {
             clearInterval(timer);
-            changeModalState(1);
+            changeModalState(ModalState.PhoneInput);
         }
-        if (seconds === 0 && error===true) {
+        if (seconds === 0 && error === true) {
             clearInterval(timer);
-            changeModalState(3);
+            changeModalState(ModalState.Error);
 
-          clearInputValues();
-
+            clearInputValues();
         }
 
         return () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeChecking from './CodeChecking';
+import { ModalState } from './Modal';
 import Timer from './Timer';
 
 type Props = {
@@ -32,7 +33,7 @@ function CodeInput(props: Props) {
             </div>
             <div
                 className='modal__phone'
-                onClick={(e) => changeModalState(1)}>
+                onClick={(e) => changeModalState(ModalState.PhoneInput)}>
                 <a className='modal__phone_link'>Изменить номер телефона</a>
             </div>
             <div className='modal__input_2'>
@@ -66,7 +67,6 @@ function CodeInput(props: Props) {
                 }}>
                 Выслать код повторно через{' '}
                 <Timer
-                    changeInputValues={changeInputValues}
                     clearInputValues={clearInputValues}
                     error={error}
                     sec={20}

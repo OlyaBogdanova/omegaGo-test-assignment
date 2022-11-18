@@ -17,7 +17,7 @@ type Props = {
     clearInputValues(): void;
 };
 
-enum ModalState {
+export enum ModalState {
     PhoneInput = 1,
     CodeInput,
     Error,
@@ -61,11 +61,13 @@ const Modal = (props: Props) => {
     async function onClickBtn(e: React.MouseEvent) {
         e.preventDefault();
 
-        changeToken(
-            await Services.getUserLogin(
-                value.trim().replace(/\D/g, '').substring(1)
-            ).then((data) => data.data['token'])
+        const data = await Services.getUserLogin(
+            value.trim().replace(/\D/g, '').substring(1)
         );
+
+        const token = data.data['token'];
+
+        changeToken(token);
 
         setModalState(ModalState.CodeInput);
     }

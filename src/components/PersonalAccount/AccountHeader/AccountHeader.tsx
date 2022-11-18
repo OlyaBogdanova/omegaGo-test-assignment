@@ -9,17 +9,21 @@ const AccountHeader = (props: Props) => {
     const { userInfo } = props;
     const { name } = userInfo;
     const [iconClassList, setIconClassList] = useState('menu__icon');
-    const [headerMenuClassList, setHeaderMenuClassList]=useState('header__menu')
+    const [headerMenuClassList, setHeaderMenuClassList] =
+        useState('header__menu');
 
     function openMenuBurger() {
-        if (iconClassList === 'menu__icon'  && headerMenuClassList==='header__menu') {
+        if (
+            iconClassList === 'menu__icon' &&
+            headerMenuClassList === 'header__menu'
+        ) {
             setIconClassList('menu__icon _active');
-            setHeaderMenuClassList('header__menu _active')
-            document.body.classList.add('_lock')
+            setHeaderMenuClassList('header__menu _active');
+            document.body.classList.add('_lock');
         } else {
             setIconClassList('menu__icon');
             setHeaderMenuClassList('header__menu');
-            document.body.classList.remove('_lock')
+            document.body.classList.remove('_lock');
         }
     }
 

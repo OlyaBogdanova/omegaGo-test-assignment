@@ -3,6 +3,7 @@ import './Modal.scss';
 import PhoneInput from './PhoneInput';
 import CodeInput from './CodeInput';
 import Error from './Error';
+import { ModalState } from './Modal';
 
 type Props = {
     modalState: number;
@@ -34,7 +35,7 @@ const ModalContent = (props: Props) => {
     } = props;
 
     switch (modalState) {
-        case 1:
+        case ModalState.PhoneInput:
             return (
                 <PhoneInput
                     value={value}
@@ -43,7 +44,7 @@ const ModalContent = (props: Props) => {
                     onSubmit={onClickBtn}
                 />
             );
-        case 2:
+        case ModalState.CodeInput:
             return (
                 <CodeInput
                     phone={value}
@@ -56,7 +57,7 @@ const ModalContent = (props: Props) => {
                     onClickBtn={onClickBtn}
                 />
             );
-        case 3:
+        case ModalState.Error:
             return (
                 <Error
                     phone={value}
