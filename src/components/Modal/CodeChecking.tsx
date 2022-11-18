@@ -1,5 +1,5 @@
-import { rejects } from 'assert';
 import React, { useEffect, useState } from 'react';
+
 import './Modal.scss';
 
 type Props = {
@@ -8,32 +8,35 @@ type Props = {
     changeError(value: boolean): void;
 };
 
-const ModalInput2 = (props: Props) => {
+const CodeChecking = (props: Props) => {
     const { inputValues, changeError, changeInputValues } = props;
     const [inputClassList, setInputClassList] = useState('');
     const [errorMessage, setErrorMessage] = useState('hide');
+
+    const isInputsNotEmpty =
+        inputValues['inputValue1'] &&
+        inputValues['inputValue2'] &&
+        inputValues['inputValue3'] &&
+        inputValues['inputValue4'];
+
+    const isCodeCorrect =
+        inputValues['inputValue1'] !== '5' ||
+        inputValues['inputValue2'] !== '5' ||
+        inputValues['inputValue3'] !== '5' ||
+        inputValues['inputValue4'] !== '5';
+
+    const isValid = isInputsNotEmpty && isCodeCorrect;
+
     useEffect(() => {
-        if (
-            inputValues['inputValue1'] &&
-            inputValues['inputValue2'] &&
-            inputValues['inputValue3'] &&
-            inputValues['inputValue4']
-        ) {
-            if (
-                inputValues['inputValue1'] !== '5' ||
-                inputValues['inputValue2'] !== '5' ||
-                inputValues['inputValue3'] !== '5' ||
-                inputValues['inputValue4'] !== '5'
-            ) {
-                setInputClassList('full');
-                setTimeout(function () {
-                    setInputClassList('input_red');
-                    setErrorMessage('showErrorMessage');
-                }, 500);
-                changeError(true);
-            }
+        if (isValid) {
+            setInputClassList('full');
+            setTimeout(function () {
+                setInputClassList('input_red');
+                setErrorMessage('showErrorMessage');
+            }, 500);
+            changeError(true);
         }
-    }, [inputValues]);
+    }, [isValid, changeError]);
 
     const arrInput = [1, 2, 3, 4];
     const elem = arrInput.map((i) => (
@@ -64,4 +67,4 @@ const ModalInput2 = (props: Props) => {
     );
 };
 
-export default ModalInput2;
+export default CodeChecking;

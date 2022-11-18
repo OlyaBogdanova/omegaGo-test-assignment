@@ -7,7 +7,7 @@ type Props = {
     isElemActive: boolean;
 };
 
-const ModalInput = (props: Props) => {
+const PhoneMask = (props: Props) => {
     const { value, changeInput, isElemActive } = props;
 
     return (
@@ -21,4 +21,4 @@ const ModalInput = (props: Props) => {
     );
 };
 
-export default ModalInput;
+export default PhoneMask;

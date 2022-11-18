@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalInput2 from './ModalInput2';
+import CodeChecking from './CodeChecking';
 
 type Props = {
     phone: string;
@@ -30,10 +30,10 @@ function Error(props: Props) {
             <div
                 className='modal__phone'
                 onClick={(e) => changeModalState(1)}>
-                <a className='modal__phone_link'>Изменить номер телефона</a>
+                <button className='modal__phone_link'>Изменить номер телефона</button>
             </div>
             <div className='modal__input_2'>
-                <ModalInput2
+                <CodeChecking
                     changeInputValues={changeInputValues}
                     changeError={changeError}
                     inputValues={inputValues}

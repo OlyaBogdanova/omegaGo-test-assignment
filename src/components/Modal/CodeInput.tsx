@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalInput2 from './ModalInput2';
+import CodeChecking from './CodeChecking';
 import Timer from './Timer';
 
 type Props = {
@@ -36,7 +36,7 @@ function CodeInput(props: Props) {
                 <a className='modal__phone_link'>Изменить номер телефона</a>
             </div>
             <div className='modal__input_2'>
-                <ModalInput2
+                <CodeChecking
                     changeInputValues={changeInputValues}
                     inputValues={inputValues}
                     changeError={changeError}

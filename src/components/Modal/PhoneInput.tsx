@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalInput from './ModalInput';
+import PhoneMask from './PhoneMask';
 
 type Props = {
     value: string;
@@ -19,7 +19,7 @@ function PhoneInput(props: Props) {
             </div>
             <div className='modal__phone'>Номер телефона</div>
             <div className='modal__input'>
-                <ModalInput
+                <PhoneMask
                     value={value}
                     changeInput={changeInput}
                     isElemActive={isElemActive}
