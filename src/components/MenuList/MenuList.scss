@@ -1,0 +1,58 @@
+@import '../../variables.scss';
+.menu__item_list_people:before {
+    content: url(../../img/menuIcons/people.svg);
+    padding-right: 8px;
+}
+.menu__item_list_stock:before {
+    content: url(../../img/menuIcons/gift.svg);
+    padding-right: 8px;
+}
+.menu__item_list_visit:before {
+    content: url(../../img/menuIcons/clock.svg);
+
+    padding-right: 8px;
+}
+.menu__item_list_booking:before {
+ 
+    content: url(../../img/menuIcons/ticket.svg);
+    padding-right: 8px;
+}
+.menu__items_list li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 167px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: calc(14 / 12 * 100%);
+    padding: 6px 15px 6px 8px;
+    margin-bottom: 6px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.menu__items_list li._active {
+    background: $primary_color;
+    color:#fff
+}
+.menu__item_list_people._active:before{
+    content: url(../../img/menuIcons/people_white.svg);
+}
+.menu__item_list_stock._active:before{
+    content: url(../../img/menuIcons/gift_white.svg);
+}
+.menu__item_list_visit._active:before{
+    content: url(../../img/menuIcons/clock_white.svg);
+}
+.menu__item_list_booking._active:before{
+    content: url(../../img/menuIcons/ticket_white.svg);
+}
+
+.account__menu_list {
+    background-color: #fff;
+    width: 191px;
+    height: 161px;
+    padding: 31px 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
+}

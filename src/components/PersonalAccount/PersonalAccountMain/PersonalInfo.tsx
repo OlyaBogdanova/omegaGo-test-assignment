@@ -17,7 +17,7 @@ const PersonalInfo = (props: Props) => {
 
     const elements = arrUserInfo.map((elem) => {
         return (
-            <div>
+            <div className='input__container'>
                 <div className='userInfo__subtitle'>
                     <h2>{Object.keys(elem)}</h2>
                 </div>
@@ -43,8 +43,8 @@ const PersonalInfo = (props: Props) => {
                     {elements[1]}
                     {elements[2]}
                     {elements[3]}
-                </div>
-                <div>{elements[4]}</div>
+                </div >
+                <div className='input__container'>{elements[4]}</div>
             </div>
             <div className='userInfo__title_2'>Скидки и предложения</div>
             <div className='checkbox__wrapper'>

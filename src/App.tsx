@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-
 import Main from './components/Page1/Main';
 import PersonalAccount from './components/PersonalAccount/PersonalAccountMain/PersonalAccount';
 import useMultiplyInputs from './hooks/useMultiplyInputs';

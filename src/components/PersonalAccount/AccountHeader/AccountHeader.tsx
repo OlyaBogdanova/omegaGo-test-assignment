@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AccountHeader.scss';
 import { Link } from 'react-router-dom';
+import MenuList from '../../MenuList/MenuList';
 const VK = require('../../../img/LK_VK.svg');
 const man = require('../../../img/LKman.svg');
 type Props = { userInfo: Record<string, string> };
@@ -8,6 +9,7 @@ type Props = { userInfo: Record<string, string> };
 const AccountHeader = (props: Props) => {
     const { userInfo } = props;
     const { name } = userInfo;
+    const [menuList, setMenuList] = useState('hideMenuList');
     const [iconClassList, setIconClassList] = useState('menu__icon');
     const [headerMenuClassList, setHeaderMenuClassList] =
         useState('header__menu');
@@ -23,6 +25,15 @@ const AccountHeader = (props: Props) => {
         } else {
             setIconClassList('menu__icon');
             setHeaderMenuClassList('header__menu');
+            document.body.classList.remove('_lock');
+        }
+    }
+    function openMenuList() {
+        if (menuList === 'hideMenuList') {
+            setMenuList('showMenuList');
+            document.body.classList.add('_lock');
+        } else {
+            setMenuList('hideMenuList');
             document.body.classList.remove('_lock');
         }
     }
@@ -112,7 +123,10 @@ const AccountHeader = (props: Props) => {
                                 alt='man'
                             />
                         </div>
-                        <div className='contacts__arrow_cont'></div>
+                        <div
+                            className='contacts__arrow_cont'
+                            onClick={(e) => openMenuList()}></div>{' '}
+                        <MenuList menuList={menuList} />
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ const PersonalAccountModal = (props: Props) => {
                         </div>
                         <div className='modal__btns'>
                             <button className='modal__btn__noRemove'>Не удалять</button>
-                            <button className='modal__btn__remove'>Да, удалить</button>
+                            <button className='modal__btn__remove' onClick={(e)=> {localStorage.removeItem('token')}}>Да, удалить</button>
                         </div>
                     </form>
                 </div>
