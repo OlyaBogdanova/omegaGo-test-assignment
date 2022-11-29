@@ -38,6 +38,14 @@ const CodeChecking = (props: Props) => {
         }
     }, [isValid, changeError]);
 
+    function inputFocus(e: React.ChangeEvent<HTMLInputElement>) {
+        if (e.target.value) {
+            const index = e.target.getAttribute('tabindex');
+
+            document.getElementsByTagName('input')[Number(index)].focus();
+        }
+    }
+
     const arrInput = [1, 2, 3, 4];
     const elem = arrInput.map((i) => (
         <input
@@ -45,10 +53,11 @@ const CodeChecking = (props: Props) => {
             key={i}
             type='text'
             name={`input${i + 1}`}
-            tabIndex={i + 1}
+            tabIndex={i}
             maxLength={1}
             onChange={(e) => {
                 changeInputValues(`inputValue${i}`, e.target.value);
+                inputFocus(e);
             }}
             onFocus={(e) => {
                 e.target.classList.add('active');

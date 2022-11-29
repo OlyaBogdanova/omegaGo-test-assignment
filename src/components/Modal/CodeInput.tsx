@@ -20,7 +20,6 @@ function CodeInput(props: Props) {
         changeError,
         changeInputValues,
         changeModalState,
-        clearInputValues,
         error,
         inputValues,
         onClickBtn,
@@ -67,9 +66,8 @@ function CodeInput(props: Props) {
                 }}>
                 Выслать код повторно через{' '}
                 <Timer
-                    clearInputValues={clearInputValues}
                     error={error}
-                    sec={20}
+                    sec={60}
                     changeModalState={changeModalState}
                 />{' '}
                 сек

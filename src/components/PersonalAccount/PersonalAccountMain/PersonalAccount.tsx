@@ -5,12 +5,18 @@ import './PersonalAccount.scss';
 import PersonalInfo from './PersonalInfo';
 import Services from '../../../Services/Services';
 type Props = { tokenCod: string };
-
+type UserInfo={
+    name:string;
+    phone:string;
+    email:string;
+    birthday:string;
+}
 const PersonalAccount = (props: Props) => {
     const { tokenCod } = props;
-    const [userInfo, setUserInfo] = useState({});
+    const [userInfo, setUserInfo] = useState<UserInfo>({name:'', phone:'', email:'', birthday:''});
+    
     async function getUserInfo(tokenCod: string) {
-        const userInfo = await Services.getUserInfo(tokenCod).then((data)=>data.data.user);
+        const userInfo = await Services.getUserInfo(tokenCod).then((data)=>data.data.user) as UserInfo;
         setUserInfo(userInfo);
     }
     useEffect(()=>{getUserInfo(tokenCod)}, [tokenCod]);
@@ -28,7 +34,7 @@ const PersonalAccount = (props: Props) => {
                         <MenuAccount />
                     </div>
 
-                    <PersonalInfo />
+                    <PersonalInfo userInfo={userInfo} />
                 </div>
             </div>
         </>

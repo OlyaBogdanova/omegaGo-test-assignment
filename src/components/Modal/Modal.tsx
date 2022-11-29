@@ -70,6 +70,7 @@ const Modal = (props: Props) => {
         changeToken(token);
 
         setModalState(ModalState.CodeInput);
+        clearInputValues()
     }
 
     if (

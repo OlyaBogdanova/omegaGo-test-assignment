@@ -5,11 +5,11 @@ type Props = {
     sec: number;
     changeModalState: (num: number) => void;
     error: boolean;
-    clearInputValues(): void;
+    // clearInputValues(): void;
 };
 
 const Timer = (props: Props) => {
-    const { sec, changeModalState, error, clearInputValues } = props;
+    const { sec, changeModalState, error } = props;
     const [seconds, setSeconds] = useState(sec);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const Timer = (props: Props) => {
             clearInterval(timer);
             changeModalState(ModalState.Error);
 
-            clearInputValues();
+        
         }
 
         return () => {

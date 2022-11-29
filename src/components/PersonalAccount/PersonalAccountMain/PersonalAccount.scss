@@ -47,10 +47,12 @@
 
 .menu__item_people:before {
     content: url(../../../img/menuIcons/people.svg);
+
     padding-right: 8px;
 }
 .menu__item_stock:before {
     content: url(../../../img/menuIcons/gift.svg);
+
     padding-right: 8px;
 }
 .menu__item_visit:before {
@@ -59,21 +61,21 @@
     padding-right: 8px;
 }
 .menu__item_booking:before {
- 
     content: url(../../../img/menuIcons/ticket.svg);
+
     padding-right: 8px;
 }
 
-.menu__item_people._active:before{
+.menu__item_people._active:before {
     content: url(../../../img/menuIcons/people_blue.svg);
 }
-.menu__item_stock._active:before{
+.menu__item_stock._active:before {
     content: url(../../../img/menuIcons/gift_blue.svg);
 }
-.menu__item_visit._active:before{
+.menu__item_visit._active:before {
     content: url(../../../img/menuIcons/clock_blue.svg);
 }
-.menu__item_booking._active:before{
+.menu__item_booking._active:before {
     content: url(../../../img/menuIcons/ticket_blue.svg);
 }
 .menu__items li {
@@ -85,8 +87,7 @@
     margin-bottom: 16px;
 }
 .menu__items li._active {
-   
-    color:$primary_color
+    color: $primary_color;
 }
 
 .menu__items li:last-child {
